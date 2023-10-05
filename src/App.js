@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState, useEffect, useContext } from 'react';
+import { Mycontext } from './Componets/Apis';
+import ItemList from './Componets/ItemList';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Details from './Componets/Details';
+import Params from './Componets/Params';
+import Indicator from './Componets/Indicator';
+ 
 function App() {
+  const data = useContext(Mycontext)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+  <div className='bg-gray-400 h-screen'> 
+    <BrowserRouter>
+   <Routes>
+    <Route path="/" element={<ItemList/>} />
+    <Route path="/:name" element={<Details/>}/>
+    <Route path="/:name/:id" element={<Params/>}/>
+    <Route path="/:name/indicator/:id" element={<Indicator/>}/>
+   </Routes>
+    </BrowserRouter>
+  </div>
   );
 }
 
